@@ -67,6 +67,18 @@ public class PandigitalPrimes {
     }
     
     /**
+     * Swap the value of a[k] with that of a[l]
+     * @param a
+     * @param k
+     * @param l 
+     */
+    public void swap(int[] a, int k, int l) {
+        int tmp = a[k];
+        a[k] = a[l];
+        a[l] = tmp;
+    }
+    
+    /**
      * Given n, the length of the pandigital, returns the largest pandigital
      * prime of that length.
      * 
@@ -112,6 +124,8 @@ public class PandigitalPrimes {
     public static void main(String[] args) {
         PandigitalPrimes p = new PandigitalPrimes();
         int[] a = {1, 2, 3, 4};
+        p.printArray(a);
+        p.swap(a, 0, 3);
         p.printArray(a);
     }
 }
