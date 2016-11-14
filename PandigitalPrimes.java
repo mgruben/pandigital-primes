@@ -91,18 +91,21 @@ public class PandigitalPrimes {
         * 
         * https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order
         */
+        
+        // Find the largest index k
         int k;
         int largest = 0;
         boolean exit = true;
         for (k = largest; k < a.length - 1; k++) {
             if (a[k] > a[k + 1]) {
                 largest = k;
-                exit = false;
+                exit = false;  // the permutation is not the last permutation
             }
         }
         if (exit) return;
         k = largest;
         
+        // Find the largest index l
         int l;
         largest = k + 1;
         for (l = largest; l < a.length; l++) {
@@ -112,6 +115,7 @@ public class PandigitalPrimes {
         }
         l = largest;
         
+        // Swap and reverse
         this.swap(a, k, l);
         this.reverseArray(a, k);
     }
