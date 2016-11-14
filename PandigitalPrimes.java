@@ -78,6 +78,38 @@ public class PandigitalPrimes {
         a[l] = tmp;
     }
     
+    public void permute(int[] a) {
+        /**
+         * permute the array of digits in largest-to-smallest order
+        Find the largest index k such that a[k] < a[k + 1]. If no such index exists, the permutation is the last permutation.
+        Find the largest index l greater than k such that a[k] < a[l].
+        Swap the value of a[k] with that of a[l].
+        Reverse the sequence from a[k + 1] up to and including the final element a[n].
+        * 
+        * https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order
+        */
+        int k;
+        int largest = 0;
+        for (k = largest; k < a.length - 1; k++) {
+            if (a[k] < a[k + 1]) {
+                largest = k;
+            }
+        }
+        k = largest;
+        
+        int l;
+        largest = k + 1;
+        for (l = largest; l < a.length; l++) {
+            if (a[k] < a[l]) {
+                largest = l;
+            }
+        }
+        l = largest;
+        
+        this.swap(a, k, l);
+        this.reverseArray(a, k);
+    }
+    
     /**
      * Given n, the length of the pandigital, returns the largest pandigital
      * prime of that length.
@@ -88,21 +120,8 @@ public class PandigitalPrimes {
     public int largestPandigitalPrime(int n) {
         // generate the array of digits to permute
         int[] a = new int[n];
-        for (int i = n; i >= 1; i--) {
+        for (int i = 1; i <= n; i++) {
             a[n - i] = i;
-        }
-        
-        //permute the stack of digits in largest-to-smallest order
-        /**
-        Find the largest index k such that a[k] < a[k + 1]. If no such index exists, the permutation is the last permutation.
-        Find the largest index l greater than k such that a[k] < a[l].
-        Swap the value of a[k] with that of a[l].
-        Reverse the sequence from a[k + 1] up to and including the final element a[n].
-        */
-        int k = 0;
-        int l = 0;
-        while (k < a.length && a[k] < a[k+1]) {
-            k++;
         }
         return 1;
     }
@@ -125,7 +144,9 @@ public class PandigitalPrimes {
         PandigitalPrimes p = new PandigitalPrimes();
         int[] a = {1, 2, 3, 4};
         p.printArray(a);
-        p.swap(a, 0, 3);
+        p.permute(a);
+        p.printArray(a);
+        p.permute(a);
         p.printArray(a);
     }
 }
