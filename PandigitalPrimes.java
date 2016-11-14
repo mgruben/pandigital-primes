@@ -90,11 +90,14 @@ public class PandigitalPrimes {
         */
         int k;
         int largest = 0;
+        boolean exit = true;
         for (k = largest; k < a.length - 1; k++) {
             if (a[k] < a[k + 1]) {
                 largest = k;
+                exit = false;
             }
         }
+        if (exit) return;
         k = largest;
         
         int l;
@@ -143,10 +146,9 @@ public class PandigitalPrimes {
     public static void main(String[] args) {
         PandigitalPrimes p = new PandigitalPrimes();
         int[] a = {1, 2, 3, 4};
-        p.printArray(a);
-        p.permute(a);
-        p.printArray(a);
-        p.permute(a);
-        p.printArray(a);
+        for (int i = 0; i < 24; i++) {
+            p.permute(a);
+            p.printArray(a);
+        }
     }
 }
