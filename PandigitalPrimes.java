@@ -81,8 +81,8 @@ public class PandigitalPrimes {
     public void permute(int[] a) {
         /**
          * permute the array of digits in largest-to-smallest order
-        Find the largest index k such that a[k] < a[k + 1]. If no such index exists, the permutation is the last permutation.
-        Find the largest index l greater than k such that a[k] < a[l].
+        Find the largest index k such that a[k] > a[k + 1]. If no such index exists, the permutation is the last permutation.
+        Find the largest index l greater than k such that a[k] > a[l].
         Swap the value of a[k] with that of a[l].
         Reverse the sequence from a[k + 1] up to and including the final element a[n].
         * 
@@ -92,7 +92,7 @@ public class PandigitalPrimes {
         int largest = 0;
         boolean exit = true;
         for (k = largest; k < a.length - 1; k++) {
-            if (a[k] < a[k + 1]) {
+            if (a[k] > a[k + 1]) {
                 largest = k;
                 exit = false;
             }
@@ -103,7 +103,7 @@ public class PandigitalPrimes {
         int l;
         largest = k + 1;
         for (l = largest; l < a.length; l++) {
-            if (a[k] < a[l]) {
+            if (a[k] > a[l]) {
                 largest = l;
             }
         }
@@ -123,7 +123,7 @@ public class PandigitalPrimes {
     public int largestPandigitalPrime(int n) {
         // generate the array of digits to permute
         int[] a = new int[n];
-        for (int i = 1; i <= n; i++) {
+        for (int i = n; i >= 1; i--) {
             a[n - i] = i;
         }
         return 1;
@@ -145,7 +145,8 @@ public class PandigitalPrimes {
      */
     public static void main(String[] args) {
         PandigitalPrimes p = new PandigitalPrimes();
-        int[] a = {1, 2, 3, 4};
+        int[] a = {4, 3, 2, 1};
+        p.printArray(a);
         for (int i = 0; i < 24; i++) {
             p.permute(a);
             p.printArray(a);
