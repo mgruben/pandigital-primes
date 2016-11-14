@@ -135,7 +135,15 @@ public class PandigitalPrimes {
         for (int i = n; i >= 1; i--) {
             a[n - i] = i;
         }
-        return 1;
+        
+        int tmp;
+        double upper = Math.pow(2, n);
+        for(int i = 0; i < upper; i++) {
+            tmp = this.atoi(a);
+            if (this.isPrime(tmp)) return tmp;
+            else this.permute(a);
+        }
+        return -1;
     }
     
     public void printArray(int[] a) {
@@ -154,6 +162,12 @@ public class PandigitalPrimes {
      */
     public static void main(String[] args) {
         PandigitalPrimes p = new PandigitalPrimes();
-        int[] a = {4, 3, 2, 1};
+        int ans = -1;
+        int n = 10;
+        while (ans == -1 && n > 0) {
+            ans = p.largestPandigitalPrime(--n);
+        }
+        System.out.println("Largest pandigital prime is: " + ans);
+        System.out.println("n = " + n);
     }
 }
