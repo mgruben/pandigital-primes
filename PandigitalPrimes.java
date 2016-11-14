@@ -124,6 +124,8 @@ public class PandigitalPrimes {
      * Given n, the length of the pandigital, returns the largest pandigital
      * prime of that length.
      * 
+     * If no n-digit pandigital prime exists for that n, returns -1
+     * 
      * @param n
      * @return 
      */
