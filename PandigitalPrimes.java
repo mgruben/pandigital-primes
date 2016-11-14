@@ -55,6 +55,15 @@ public class PandigitalPrimes {
         return true;
     }
     
+    public int atoi(int[] a) {
+        int ans = 0;
+        for (int i: a) {
+            ans *= 10;
+            ans += i;
+        }
+        return ans;
+    }
+    
     /**
      * Reverse the sequence from a[k+1] up to and including the final element
      * @param a
@@ -146,10 +155,5 @@ public class PandigitalPrimes {
     public static void main(String[] args) {
         PandigitalPrimes p = new PandigitalPrimes();
         int[] a = {4, 3, 2, 1};
-        p.printArray(a);
-        for (int i = 0; i < 24; i++) {
-            p.permute(a);
-            p.printArray(a);
-        }
     }
 }
