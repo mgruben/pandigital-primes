@@ -27,6 +27,20 @@ import java.util.Arrays;
  */
 public class PandigitalPrimes {
     
+    // https://en.wikipedia.org/wiki/Primality_test#Pseudocode
+    public boolean isPrime(int n) { 
+        if (n <= 1) return false;
+        if (n <= 3) return true;
+        if ((n % 2 == 0) || (n % 3 == 0)) return false;
+        int i = 5;
+        while (i * i <= n) {
+            if ((n % i == 0) || (n % (i + 2) == 0)) return false;
+            i += 6;
+        }
+        return true;
+    }
+
+    
     /**
      * Is the given string of digits pandigital?
      * @param s
@@ -47,6 +61,6 @@ public class PandigitalPrimes {
      */
     public static void main(String[] args) {
         PandigitalPrimes p = new PandigitalPrimes();
-        System.out.println(p.isPandigital("214"));
+        System.out.println(p.isPrime(4));
     }
 }
