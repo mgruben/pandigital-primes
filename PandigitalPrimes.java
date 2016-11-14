@@ -55,6 +55,14 @@ public class PandigitalPrimes {
         return true;
     }
     
+    /**
+     * Given an integer array representing a decimal integer,
+     * returns that decimal integer.
+     * 
+     * e.g. atoi({1, 2, 3, 4}) -> 1234
+     * @param a
+     * @return 
+     */
     public int atoi(int[] a) {
         int ans = 0;
         for (int i: a) {
@@ -146,6 +154,11 @@ public class PandigitalPrimes {
         return -1;
     }
     
+    /**
+     * Prints the given array as:
+     * {i1, i2, i3, ..., i(n-1), in}
+     * @param a 
+     */
     public void printArray(int[] a) {
         String res = "{";
         for (int i: a) {
