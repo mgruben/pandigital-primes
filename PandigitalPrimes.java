@@ -16,17 +16,37 @@
  */
 package pandigitalprimes;
 
+import java.util.Arrays;
+
 /**
- *
+ * Finds the largest n-digit pandigital prime.
+ * 
+ * A number is n-digit pandigital if it makes use of the digits 1 through n
+ * exactly once.
  * @author Michael <GrubenM@GMail.com>
  */
 public class PandigitalPrimes {
-
+    
+    /**
+     * Is the given string of digits pandigital?
+     * @param s
+     * @return 
+     */
+    public boolean isPandigital(String s) {
+        char[] ch = s.toCharArray();
+        Arrays.sort(ch);
+        for (int i = 0; i < ch.length; i++) {
+            if (ch[i] != i+1 + '0') return false;
+        }
+        return true;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        PandigitalPrimes p = new PandigitalPrimes();
+        System.out.println(p.isPandigital("214"));
     }
-    
 }
