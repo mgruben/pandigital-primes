@@ -48,7 +48,7 @@ public class PandigitalPrimes {
      * @param a
      * @return 
      */
-    public int atoi(int[] a) {
+    private int atoi(int[] a) {
         int ans = 0;
         for (int i: a) {
             ans *= 10;
@@ -62,7 +62,7 @@ public class PandigitalPrimes {
      * @param a
      * @param k 
      */
-    public void reverseArray(int[] a, int k) {
+    private void reverseArray(int[] a, int k) {
         Stack<Integer> s = new Stack<>();
         for (int tmp = k; tmp + 1 < a.length; tmp++) s.push(a[tmp+1]);
         for (int tmp = k; tmp + 1 < a.length; tmp++) a[tmp+1] = s.pop();
@@ -74,7 +74,7 @@ public class PandigitalPrimes {
      * @param k
      * @param l 
      */
-    public void swap(int[] a, int k, int l) {
+    private void swap(int[] a, int k, int l) {
         int tmp = a[k];
         a[k] = a[l];
         a[l] = tmp;
@@ -85,7 +85,7 @@ public class PandigitalPrimes {
      * No change is made if the array is already the smallest permutation.
      * @param a 
      */
-    public void permute(int[] a) {
+    private void permute(int[] a) {
         /**
          * from https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order
          * 
