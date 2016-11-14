@@ -17,6 +17,7 @@
 package pandigitalprimes;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 /**
  * Finds the largest n-digit pandigital prime.
@@ -28,7 +29,7 @@ import java.util.Arrays;
 public class PandigitalPrimes {
     
     // https://en.wikipedia.org/wiki/Primality_test#Pseudocode
-    public boolean isPrime(int n) { 
+    private boolean isPrime(int n) { 
         if (n <= 1) return false;
         if (n <= 3) return true;
         if ((n % 2 == 0) || (n % 3 == 0)) return false;
@@ -39,14 +40,13 @@ public class PandigitalPrimes {
         }
         return true;
     }
-
     
     /**
      * Is the given string of digits pandigital?
      * @param s
      * @return 
      */
-    public boolean isPandigital(String s) {
+    private boolean isPandigital(String s) {
         char[] ch = s.toCharArray();
         Arrays.sort(ch);
         for (int i = 0; i < ch.length; i++) {
@@ -55,12 +55,63 @@ public class PandigitalPrimes {
         return true;
     }
     
+    /**
+     * Reverse the sequence from a[k+1] up to and including the final element
+     * @param a
+     * @param k 
+     */
+    public void reverseArray(int[] a, int k) {
+        Stack<Integer> s = new Stack<>();
+        for (int tmp = k; tmp + 1 < a.length; tmp++) s.push(a[tmp+1]);
+        for (int tmp = k; tmp + 1 < a.length; tmp++) a[tmp+1] = s.pop();
+    }
+    
+    /**
+     * Given n, the length of the pandigital, returns the largest pandigital
+     * prime of that length.
+     * 
+     * @param n
+     * @return 
+     */
+    public int largestPandigitalPrime(int n) {
+        // generate the array of digits to permute
+        int[] a = new int[n];
+        for (int i = n; i >= 1; i--) {
+            a[n - i] = i;
+        }
+        
+        //permute the stack of digits in largest-to-smallest order
+        /**
+        Find the largest index k such that a[k] < a[k + 1]. If no such index exists, the permutation is the last permutation.
+        Find the largest index l greater than k such that a[k] < a[l].
+        Swap the value of a[k] with that of a[l].
+        Reverse the sequence from a[k + 1] up to and including the final element a[n].
+        */
+        int k = 0;
+        int l = 0;
+        while (k < a.length && a[k] < a[k+1]) {
+            k++;
+        }
+        return 1;
+    }
+    
+    public void printArray(int[] a) {
+        String res = "{";
+        for (int i: a) {
+            res += i;
+            res += ", ";
+        }
+        res = res.substring(0, res.length() - 2);
+        res += "}";
+        System.out.println(res);
+    }
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         PandigitalPrimes p = new PandigitalPrimes();
-        System.out.println(p.isPrime(4));
+        int[] a = {1, 2, 3, 4};
+        p.printArray(a);
     }
 }
